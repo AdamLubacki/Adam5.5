@@ -15,6 +15,10 @@
 </div>
 <div id="container">
 	<div id="content">
+	<input type="button" value="Add Patient "
+			onclick="window.location.href='http://localhost:8081/web-patient-tracker/patient/showFormAdd';return false;"
+			class="add-button"
+	/>
 	<table>
 		<th> id </th>
 		<th> First Name </th>

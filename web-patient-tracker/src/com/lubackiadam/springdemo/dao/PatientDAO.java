@@ -7,4 +7,6 @@ import com.lubackiadam.springdemo.entity.Patient;
 public interface PatientDAO {
 
 	public List<Patient>getPatients();
+
+	public void savePatient(Patient thePatient);
 }

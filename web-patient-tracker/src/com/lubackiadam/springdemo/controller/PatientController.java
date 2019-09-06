@@ -5,6 +5,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.lubackiadam.springdemo.dao.PatientDAO;
@@ -26,5 +29,21 @@ public class PatientController {
 		//add patients to model
 		theModel.addAttribute("patients", thePatients);
 		return "list-patients";
+	}
+	@GetMapping("/showFormAdd")
+	public String showFormAdd(Model theModel) {
+		//create patient to bind data form
+		Patient thePatient= new Patient();
+		theModel.addAttribute("patient",thePatient);
+		
+		return "patient-form";
+	}
+	@PostMapping("/savePatient")
+	public String savePatient(@ModelAttribute("patient") Patient thePatient) {
+		
+		//save patient using service
+		patientService.savePatient(thePatient);
+		
+		return "redirect:/patient/list";
 	}
 }
