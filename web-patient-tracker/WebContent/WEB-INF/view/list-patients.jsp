@@ -24,12 +24,19 @@
 		<th> First Name </th>
 		<th> Last Name </th>
 		<th> email </th>
+		<th> Action </th>
 		<c:forEach var="tempPatient" items="${patients}">
+			
+			<c:url var="updateLink" value="/patient/showFormForUpdate">
+				<c:param name="patientId" value="${tempPatient.id }"/>
+			</c:url>
+			
 			<tr>
 				<td>${tempPatient.id}</td>
 				<td>${tempPatient.firstName}</td>
 				<td>${tempPatient.lastName}</td>
 				<td>${tempPatient.email}</td>
+				<td><a href="${updateLink}">Update</a></td>
 			</tr>
 		</c:forEach>
 	</table>

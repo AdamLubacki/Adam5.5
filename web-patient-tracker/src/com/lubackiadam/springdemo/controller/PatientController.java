@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.lubackiadam.springdemo.dao.PatientDAO;
 import com.lubackiadam.springdemo.entity.Patient;
@@ -45,5 +46,12 @@ public class PatientController {
 		patientService.savePatient(thePatient);
 		
 		return "redirect:/patient/list";
+	}
+	@GetMapping("/showFormForUpdate")
+	public String showFormForUpdate(@RequestParam("patientId")int theId, Model theModel) {
+		
+		Patient thePatient = patientService.getPatient(theId);
+		theModel.addAttribute("patient", thePatient);
+		return "patient-form";
 	}
 }
