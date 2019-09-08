@@ -30,13 +30,22 @@
 			<c:url var="updateLink" value="/patient/showFormForUpdate">
 				<c:param name="patientId" value="${tempPatient.id }"/>
 			</c:url>
+			<c:url var="deleteLink" value="/patient/deletePatient">
+				<c:param name="patientId" value="${tempPatient.id }"/>
+			</c:url>
 			
 			<tr>
 				<td>${tempPatient.id}</td>
 				<td>${tempPatient.firstName}</td>
 				<td>${tempPatient.lastName}</td>
 				<td>${tempPatient.email}</td>
-				<td><a href="${updateLink}">Update</a></td>
+				<td>
+					<a href="${updateLink}">Update</a>
+					|
+					<a href="${deleteLink}"
+						onclick="if (!(confirm('are you sure you want to delete this patient from list')))return false"
+						>Delete</a>
+				</td>
 			</tr>
 		</c:forEach>
 	</table>

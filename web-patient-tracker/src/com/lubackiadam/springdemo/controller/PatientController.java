@@ -54,4 +54,11 @@ public class PatientController {
 		theModel.addAttribute("patient", thePatient);
 		return "patient-form";
 	}
+	@GetMapping("/deletePatient")
+	public String deletePatient(@RequestParam("patientId")int theId) {
+		patientService.deletePatient(theId);
+		
+		
+		return "redirect:/patient/list";
+	}
 }

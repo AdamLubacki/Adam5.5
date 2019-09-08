@@ -44,5 +44,12 @@ public class PatientDAOImpl implements PatientDAO{
 		Patient thePatient =currentSession.get(Patient.class,theId);
 		return thePatient;
 	}
+	@Override
+	public void deletePatient(int theId) {
+		Session currentSession =sessionFactory.getCurrentSession();
+		Query theQuery=currentSession.createQuery("delete from Patient where id=:patientId");
+		theQuery.setParameter("patientId", theId);
+		theQuery.executeUpdate();
+	}
 
 }
