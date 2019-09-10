@@ -2,6 +2,7 @@ package com.lubackiadam.springdemo.service;
 
 import java.util.List;
 
+import com.lubackiadam.springdemo.entity.Doctor;
 import com.lubackiadam.springdemo.entity.Patient;
 
 public interface PatientService {
@@ -13,4 +14,8 @@ public interface PatientService {
 	public Patient getPatient(int theId);
 
 	public void deletePatient(int theId);
+
+	public List<Patient> checkPatients(int theId);
+
+	
 }

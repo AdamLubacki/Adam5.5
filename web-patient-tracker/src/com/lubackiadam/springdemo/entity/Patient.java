@@ -1,10 +1,17 @@
 package com.lubackiadam.springdemo.entity;
 
+import java.util.HashSet;
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -15,7 +22,7 @@ public class Patient {
 	private String firstName;
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="id")
+	@Column(name="patient_id")
 	private int id;
 	@Column(name="last_name")
 	private String lastName;
@@ -25,6 +32,14 @@ public class Patient {
 	public Patient() {
 		
 	}
+	@ManyToMany(cascade = { CascadeType.ALL })
+    @JoinTable(
+        name = "patient_doctor", 
+        joinColumns = { @JoinColumn(name = "patient_id") }, 
+        inverseJoinColumns = { @JoinColumn(name = "doctor_id") }
+    )
+    Set<Doctor> doctors = new HashSet<>();
+	
 
 	@Override
 	public String toString() {

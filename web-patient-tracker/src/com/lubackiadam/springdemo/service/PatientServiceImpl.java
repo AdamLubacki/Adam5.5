@@ -16,7 +16,6 @@ public class PatientServiceImpl implements PatientService {
 	@Override
 	@Transactional
 	public List<Patient> getPatients() {
-		// TODO Auto-generated method stub
 		return patientDao.getPatients();
 	}
 	@Override
@@ -35,6 +34,11 @@ public class PatientServiceImpl implements PatientService {
 	public void deletePatient(int theId) {
 
 		patientDao.deletePatient(theId);
+	}
+	@Override
+	@Transactional
+	public List<Patient> checkPatients(int theId) {
+		return patientDao.checkPatients(theId);
 	}
 
 }

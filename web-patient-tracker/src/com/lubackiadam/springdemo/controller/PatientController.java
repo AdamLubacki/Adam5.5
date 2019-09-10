@@ -22,15 +22,22 @@ public class PatientController {
 	@Autowired
 	private PatientService patientService;
 	
-	@RequestMapping("/list")
-	public String listPatients(Model theModel) {
+	@RequestMapping("/checkPatients")
+	public String checkPatients(@RequestParam("doctorId")int theId, Model theModel) {
 		
-		//get patient from Service
-		List<Patient> thePatients=patientService.getPatients();
-		//add patients to model
+		List<Patient> thePatients=patientService.checkPatients(theId);
 		theModel.addAttribute("patients", thePatients);
 		return "list-patients";
 	}
+	
+	//public String listPatients(Model theModel) {
+		
+		//get patient from Service
+		//List<Patient> thePatients=patientService.getPatients();
+		//add patients to model
+		//theModel.addAttribute("patients", thePatients);
+		//return "list-patients";
+	//}
 	@GetMapping("/showFormAdd")
 	public String showFormAdd(Model theModel) {
 		//create patient to bind data form
