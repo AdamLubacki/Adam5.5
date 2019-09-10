@@ -56,7 +56,7 @@ public class PatientDAOImpl implements PatientDAO{
 
 		Session currentSession =sessionFactory.getCurrentSession();
 		Query<Patient> theQuery = 
-				currentSession.createQuery("from Patient INNER JOIN patient_doctor ON (patients.patient_id= patient_doctor.patient_id)where doctor_id=doctorId",Patient.class);
+				currentSession.createQuery("Select p from Patient p  JOIN p.doctors d where d.id = :doctorId",Patient.class);
 		theQuery.setParameter("doctorId", theId);
 		
 		List<Patient>patients=theQuery.getResultList();		
